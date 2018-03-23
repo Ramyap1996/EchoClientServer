@@ -8,13 +8,13 @@ public static void main(String args[]) throws Exception
 try
 {
 	int Port;
-        BufferedReader buf=new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader buff=new BufferedReader(new InputStreamReader(System.in));
 	System.out.print("Enter the port Address:");
-	Port=Integer.parseInt(in.readLine());
+	Port=Integer.parseInt(buff.readLine());
 	ServerSocket sock=new ServerSocket(Port);
 	System.out.println(" Server is Ready To Receive a Message. ");
 	System.out.println(" Waiting ..... ");
-	Socket so=sok.accept();
+	Socket so=sock.accept();
 	if(so.isConnected()==true)
             System.out.println(" Client Socket is Connected Succecfully. ");
 	InputStream in=so.getInputStream();
