@@ -11,7 +11,7 @@ try
         BufferedReader buf=new BufferedReader(new InputStreamReader(System.in));
 	System.out.print("Enter the port Address:");
 	Port=Integer.parseInt(in.readLine());
-	ServerSocket sock=new ServerSocket(port);
+	ServerSocket sock=new ServerSocket(Port);
 	System.out.println(" Server is Ready To Receive a Message. ");
 	System.out.println(" Waiting ..... ");
 	Socket so=sok.accept();
