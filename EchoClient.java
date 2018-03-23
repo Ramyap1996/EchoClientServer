@@ -25,7 +25,11 @@ String str1,str2;
 System.out.print(" Enter the Message : ");
 str1=buf1.readLine();
 pr.println(str1);
+<<<<<<< HEAD
 pr.flush();
+=======
+pr.flush();	
+>>>>>>> 788aff8b019099d1267c444086fcfd5292a2599f
 System.out.println(" Message Send Successfully. ");
 str2=buf2.readLine();
 System.out.println(" Message From Server : " + str2);
@@ -34,5 +38,9 @@ System.out.println(" Message From Server : " + str2);
   {
    System.out.println(" Error : " + e.getMessage());
   }
+<<<<<<< HEAD
 	}
+=======
+}
+>>>>>>> 788aff8b019099d1267c444086fcfd5292a2599f
 }
