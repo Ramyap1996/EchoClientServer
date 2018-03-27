@@ -1,36 +1,54 @@
+
 import java.io.*;
 import java.net.*;
 
 public class EchoServer
 {
-public static void main(String args[]) throws Exception
-{
-try
-{
-	int Port;
-        BufferedReader buff=new BufferedReader(new InputStreamReader(System.in));
-	System.out.print("Enter the port Address:");
-	Port=Integer.parseInt(buff.readLine());
-	ServerSocket sock=new ServerSocket(Port);
-	System.out.println(" Server is Ready To Receive a Message. ");
-	System.out.println(" Waiting ..... ");
-	Socket so=sock.accept();
-	if(so.isConnected()==true)
-            System.out.println(" Client Socket is Connected Succecfully. ");
-	InputStream in=so.getInputStream();
-	OutputStream ou=so.getOutputStream();
-	PrintWriter pr=new PrintWriter(ou);
-	BufferedReader buf=new BufferedReader(new
-	InputStreamReader(in));
-	String str=buf.readLine();
-	System.out.println(" Message Received From Client : " + str);
-	System.out.println(" This Message is Forwarded To Client. ");
-	pr.println(str);
-	pr.flush();
+	public EchoServer(int portnum)
+	{
+		try
+		{
+			server = new ServerSocket(portnum);
+		}
+		catch (Exception err)
+		{
+			System.out.println(err);
+		}
 	}
- 	catch(Exception e)
-  	{
-  		System.out.println(" Error : " + e.getMessage());
-  	}	
+
+	public void serve()
+	{
+		try
+		{
+			while (true)
+			{
+				Socket client = server.accept();
+				BufferedReader r = new BufferedReader(new InputStreamReader(client.getInputStream()));
+				PrintWriter w = new PrintWriter(client.getOutputStream(), true);
+				w.println("Welcome to the Java EchoServer.  Type 'bye' to close.");
+				String line;
+				do
+				{
+					line = r.readLine();
+					if ( line != null )
+						w.println("Got: "+ line);
+				}
+				while ( !line.trim().equals("bye") );
+				client.close();
+			}
+		}
+		catch (Exception err)
+		{
+			System.err.println(err);
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		EchoServer s = new EchoServer(9999);
+		s.serve();
+	}
+
+	private ServerSocket server;
 }
-}
+
